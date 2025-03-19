@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sora', 'Poppins';
+}
+
+:root{
+    --mainTitle: 2.5rem;
+    --mediumHeading: 2rem;
+    --mediumContent: 1.25rem;
+    --smallContent:1rem;
+
+    --lightGreen: rgb(126, 255, 126);
+}
+
+.mainTitle{
+    font-size: var(--mainTitle);
+}
+.mediumHeading{
+    font-size: var(--mediumHeading);
+}
+.mediumContent{
+    font-size: var(--mediumContent);
+}
+.smallContent{
+    font-size: var(--smallContent);
+}
+
+.mainContainer{
+    background-color: rgb(144, 203, 139);
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.infoText{
+    font-size: 0.85rem;
+    font-family: 'Poppins';
+    padding: 0.15rem;
+    text-align: left;
+    color: rgb(9, 26, 4);
+}
+.navbar
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+
+}
+
+button
+{
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    outline: none;
+    font-size: var(--mediumContent);
+    border: 2px solid var(--lightGreen);
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.signUp{
+    background: var(--lightGreen);
+}
+
+.playerModel
+{
+    background: #00c04b;
+    position: absolute;
+    right: -100%;
+    opacity: 0;
+    scale: 0;
+    padding:2.5rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s ease;
+}
+
+.modelInput
+{
+    font-size: var(--mediumContent);
+    font-family: 'Sora';
+    padding: 0.5rem;
+    outline: none;
+    border-radius: 0.25rem;
+    border: none;
+    width: 250px;
+}
+.openModel{
+    opacity: 1;
+    right: 25px;
+    scale: 1;
+}
+
+.playersContainer
+{
+    padding:0 1rem;
+}
+.innerContainer
+{
+    width: calc(80*9px);
+    border-start-end-radius: 2px solid blue;
+    border-radius: 0.25rem;
+}
+.topHeader
+{
+    background-color: var(--lightGreen);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1rem;
+}
+.headerCounter{
+    font-weight: bold;
+}
+.headerCounter, .counterContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.counterContainer p
+{
+    padding: 0.25rem;
+}
+
+.tilesContainer{
+    border: 2px solid blue;
+}
+.tilesRow
+{
+    display: grid;
+    grid-template-columns: repeat(9, 80px);
+}
+
+.tile
+{
+    border: 2px solid red;
+    height: 80px;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.tile p
+{
+    font-weight: bold;
+}
