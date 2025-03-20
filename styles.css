@@ -1,50 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Sora', 'Poppins';
 }
 
-:root{
+:root {
     --mainTitle: 2.5rem;
     --mediumHeading: 2rem;
     --mediumContent: 1.25rem;
-    --smallContent:1rem;
+    --smallContent: 1rem;
 
     --lightGreen: rgb(126, 255, 126);
+    --darkGreen: #00c04b;
 }
 
-.mainTitle{
+.mainTitle {
     font-size: var(--mainTitle);
 }
-.mediumHeading{
+
+.mediumHeading {
     font-size: var(--mediumHeading);
 }
-.mediumContent{
+
+.mediumContent {
     font-size: var(--mediumContent);
 }
-.smallContent{
+
+.smallContent {
     font-size: var(--smallContent);
 }
 
-.mainContainer{
+.mainContainer {
     background-color: rgb(144, 203, 139);
     width: 100vw;
     height: 100vh;
     text-align: center;
 }
 
-.infoText{
+.infoText {
     font-size: 0.85rem;
     font-family: 'Poppins';
     padding: 0.15rem;
     text-align: left;
     color: rgb(9, 26, 4);
 }
-.navbar
-{
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +56,7 @@
 
 }
 
-button
-{
+button {
     background: transparent;
     border: none;
     padding: 0.5rem 1.25rem;
@@ -64,24 +67,22 @@ button
     cursor: pointer;
 }
 
-.signUp{
+.signUp {
     background: var(--lightGreen);
 }
 
-.playerModel
-{
-    background: #00c04b;
+.playerModel {
+    background: var(--darkGreen);
     position: absolute;
     right: -100%;
     opacity: 0;
     scale: 0;
-    padding:2.5rem 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 0.5rem;
     transition: all 0.25s ease;
 }
 
-.modelInput
-{
+.modelInput {
     font-size: var(--mediumContent);
     font-family: 'Sora';
     padding: 0.5rem;
@@ -90,73 +91,147 @@ button
     border: none;
     width: 250px;
 }
-.openModel{
+
+.openModel {
     opacity: 1;
     right: 25px;
     scale: 1;
 }
-.btnsGroup{
+
+.btnsGroup {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0.5rem ;
+    padding: 0.5rem;
 }
-.addBtn{
+
+.addBtn {
     background-color: var(--lightGreen);
 }
 
-
-.playersContainer
-{
-    padding:0 1rem;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    border: 2px solid red;
+    padding: 1rem;
 }
-.innerContainer
-{
+
+.playersContainer {
+    padding: 0 1rem;
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.85rem 0;
+}
+
+.innerContainer {
     width: calc(80*9px);
-    border-start-end-radius: 2px solid blue;
     border-radius: 0.25rem;
 }
-.topHeader
-{
+
+.topHeader {
     background-color: var(--lightGreen);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.85rem 1rem;
 }
-.headerCounter{
+
+.headerCounter {
     font-weight: bold;
 }
-.headerCounter, .counterContainer
+
+.headerCounter,
+.counterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counterContainer p {
+    padding: 0.25rem;
+}
+
+.tilesContainer {
+    border: 2px solid blue;
+}
+
+.tilesRow {
+    display: grid;
+    grid-template-columns: repeat(9, 80px);
+}
+
+.tile {
+    border: 2px solid red;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile p {
+    font-weight: bold;
+}
+
+
+/* number board */
+.numberBoardWrapper {
+    border: 2px solid red;
+}
+
+.nbHeader {
+    background: var(--lightGreen);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.25rem;
+}
+.nbOuterWrapper
 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.counterContainer p
-{
-    padding: 0.25rem;
-}
 
-.tilesContainer{
-    border: 2px solid blue;
-}
-.tilesRow
-{
-    display: grid;
-    grid-template-columns: repeat(9, 80px);
-}
-
-.tile
-{
-    border: 2px solid red;
-    height: 80px;
+.nbNumberWrapper {
     display: flex;
-    justify-content: center ;
+    justify-content: center;
+    align-items: center;
+    padding: 0.85rem;
+}
+
+.nbNumberWrapper .mainTitle {
+    --cmSize:120px;
+    border: 2px solid black;
+    width: var(--cmSize);
+    height: var(--cmSize);
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.tile p
+.nbNumbersContainer {
+    display: grid;
+    grid-template-columns: repeat(15,50px);
+    gap:5px;
+}
+
+.nbNumbersContainer .nbCell {
+    border: 2px solid var(--darkGreen);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--lightGreen);
+    border-radius: 0.25rem;
+}
+
+.activenbCell
 {
-    font-weight: bold;
+    background-color: var(--darkGreen);
 }
