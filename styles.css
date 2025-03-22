@@ -174,7 +174,10 @@ button {
 .tile p {
     font-weight: bold;
 }
-
+.crossedTile 
+{
+    background-color: rgba(255, 0, 0, 0.395);
+}
 
 /* number board */
 .numberBoardWrapper {

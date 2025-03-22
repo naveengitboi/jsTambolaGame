@@ -2,13 +2,14 @@ const numOfTiles = 9;
 const numOfRows = 3;
 const tileWidth = 80;
 const tileHeight = 80;
+const boardNums = []
 
 
 let innerContainer = document.querySelector('.innerContainer');
 
 class Board {
 
-    constructor({player = player, crossPoints = crossPoints, numOfRows = 3, numOfTiles = 9, tileWidth = 80, tileHeight = 80}) {
+    constructor({player = player, crossPoints = crossPoints}) {
         this.player = player;
         this.crossPoints = crossPoints;
         this.numOfRows = numOfRows;
@@ -24,8 +25,8 @@ class Board {
             tilesContainer.appendChild(tilesRow);
         }
     }
-    createRandomNum(i, tile) {
-        let min = i * 10;
+    getRandomNum(i, tile) {
+        let min = i * 10 + 1;
         let max = (i + 1) * 10;
 
         let randomNum = Math.floor(Math.random() * (max - min + 1) + min);
@@ -33,8 +34,8 @@ class Board {
         tileText.classList.add('mediumContent');
 
         tileText.textContent = (randomNum);
+        boardNums.push(randomNum);
         tile.appendChild(tileText);
-
     }
     createTile(tilesRow) {
         let timesGenerated = 0;
@@ -43,11 +44,11 @@ class Board {
             tile.classList.add('tile');
             let randNum = Math.floor(Math.random() * 10 + 1);
             if (timesGenerated < 5 && (i == 6)) {
-                this.createRandomNum(i, tile);
+                this.getRandomNum(i, tile);
                 timesGenerated++;
             }
             else if ((randNum % 2 == 0) && timesGenerated < 5) {
-                this.createRandomNum(i, tile);
+                this.getRandomNum(i, tile);
                 timesGenerated++;
             }
             tilesRow.appendChild(tile)
@@ -94,3 +95,5 @@ class Board {
     }
 
 }
+
+console.log(boardNums)
