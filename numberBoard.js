@@ -32,6 +32,16 @@ function checkIfExist(num) {
     return false;
 }
 
+function closeResetPopup(){
+    resetModel.classList.remove('openResetModel');
+    resetModel.classList.add('closeResetModel');
+}
+
+function openResetPopup(){
+    resetModel.classList.add('openResetModel');
+    resetModel.classList.remove('closeResetModel');
+}
+
 if (nums.length < maxNum) {
     numberEle.addEventListener("click", (e) => {
         let randInt = getRandomNumber();
@@ -51,21 +61,16 @@ if (nums.length < maxNum) {
     resetBtn.addEventListener("click", (e) => {
         nums = [];
         if(resetModel.classList.contains('closeResetModel')){
-            resetModel.classList.remove('closeResetModel');
-            resetModel.classList.add('openResetModel');
-            
+            openResetPopup();
             confirmResetBtn.addEventListener('click', () => {
-                resetModel.classList.remove('openResetModel');
-                resetModel.classList.add('closeResetModel');
+                closeResetPopup();
                 changeBackground(nums, null);
                 showHistory(nums, true);
 
             });
 
             cancelResetBtn.addEventListener('click', () => {
-                resetModel.classList.remove('openResetModel');
-                resetModel.classList.add('closeResetModel');
-
+                closeResetPopup();
             });
             
         }

@@ -120,9 +120,10 @@ button {
 }
 
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 50%); */
     padding: 1rem;
+    border: 2px solid var(--lightGreen);
 }
 
 .playersContainer {
@@ -191,7 +192,6 @@ button {
 
 /* number board */
 .numberBoardWrapper {
-    border: 2px solid var(--lightGreen);
     min-width: 50vw;
 }
 
@@ -300,5 +300,25 @@ button {
 {
     background-color: var(--lightGreen);
     margin-left: 1rem;
+}
+
+/* responsive*/
+
+@media screen and (max-width: 986px) {
+    .nbNumbersContainer, .historyContainer {
+        grid-template-columns: repeat(10,50px);
+    }
+}
+
+@media screen and (max-width: 677px) {
+    .nbNumbersContainer, .historyContainer {
+        grid-template-columns: repeat(8,50px);
+    }
+}
+
+@media screen and (max-width: 585px) {
+    .nbNumbersContainer, .historyContainer {
+        grid-template-columns: repeat(5,50px);
+    }
 }
 
