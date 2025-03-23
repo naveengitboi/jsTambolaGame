@@ -1,66 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
     <div class="mainContainer">
-        <div class="navbar">
-            <h1 class="mainTitle">Tambola</h1>
-            <div class="actionNavbar">
-                <button class="signUp">SignUp</button>
-                <button class="addPlayerBtn">Add Player</button>
-            </div>
+      <div class="navbar">
+        <h1 class="mainTitle">Tambola</h1>
+        <div class="actionNavbar">
+          <button class="signUp">SignUp</button>
+          <button class="addPlayerBtn">Add Player</button>
         </div>
-        <div class="playerModel">
-            <input type="text" placeholder="Enter Player Name" class="modelInput">
-            <div class="btnsGroup">
-                <button class="cancelBtn">Cancel</button>
-                <button class="addBtn">Add</button>
-            </div>
-            <p class="infoText">Pro Tip, you can also press Enter to add Player</p>
+      </div>
+      <div class="playerModel">
+        <input type="text" placeholder="Enter Player Name" class="modelInput" />
+        <div class="btnsGroup">
+          <button class="cancelBtn">Cancel</button>
+          <button class="addBtn">Add</button>
         </div>
-        <div class="wrapper">
-            <div class="playersContainer">
-                <div class="innerContainer">
-                </div>
-            </div>
-
-            <div class="numberBoardWrapper">
-                <div class="nbHeader">
-                    <h1 class="mediumContent">HousieBoard</h1>
-                    <div class="nbIcons">
-                        <p>sound</p>
-                    </div>
-                </div>
-
-                <div class="nbNumberWrapper">
-                    <h1 class="numberElement mainTitle">
-                        63
-                    </h1>
-                </div>
-                <div class="nbOuterWrapper">
-                    <div class="nbNumbersContainer">
-                    </div>
-                </div>
-            </div>
+        <p class="infoText">Pro Tip, you can also press Enter to add Player</p>
+      </div>
+      <div class="wrapper">
+        <div class="playersContainer">
+          <div class="innerContainer"></div>
         </div>
 
+        <div class="numberBoardWrapper">
+          <div class="nbHeader">
+            <h1 class="mediumContent">HousieBoard</h1>
+            <div class="nbIcons">
+              <p>sound</p>
+            </div>
+          </div>
 
+          <div class="nbNumberWrapper">
+            <h1 class="numberElement mainTitle">63</h1>
+          </div>
+          <div class="nbOuterWrapper">
+            <div class="nbNumbersContainer"></div>
+
+            <div class="numberBoardBtns">
+              <button class="historyBtn">histoy</button>
+              <button class="resetBtn">Reset</button>
+            </div>
+
+            <div class="historyContainer"></div>
+          </div>
+        </div>
+      </div>
     </div>
-
 
     <script src="player.js"></script>
     <script src="board.js"></script>
     <script src="numberBoard.js"></script>
     <script src="main.js"></script>
-
-</body>
-
+  </body>
 </html>
