@@ -125,7 +125,7 @@ historyBtn.addEventListener("click", (event) => {
 
 function checkIfItExistInHistory(num) {
     let cells = historyContainer.children;
-    console.log("Cells ", cells);
+    // console.log("Cells ", cells);
     for (let cell of cells) {
         let cellNum = cell.attributes[1].value;
         if (cellNum == num) {

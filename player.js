@@ -17,7 +17,7 @@ function savePlayer(playerObj, addedPlayer, playerModel, modelInput) {
         let board = new Board({ player: player.playerName, crossPoints: player.checked.length })
     }
     modelOpened = false;
-    console.log(players)
+    // console.log(players)
     return;
 }
 function createPlayer(event) {
@@ -25,7 +25,7 @@ function createPlayer(event) {
     modelInput.addEventListener('change', (e) => {
         playerName = e.target.value;
         let modelOpened = true;
-        console.log(playerName);
+        // console.log(playerName);
     })
     if (playerName) {
 
@@ -42,7 +42,7 @@ function createPlayer(event) {
 
 
     addBtn.addEventListener('click', (e) => {
-        console.log('Naveen')
+        // console.log('Naveen')
         if (playerName) {
             let addedPlayer = false;
             let playerObj = {

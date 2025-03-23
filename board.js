@@ -96,4 +96,4 @@ class Board {
 
 }
 
-console.log(boardNums)
+// console.log(boardNums)
