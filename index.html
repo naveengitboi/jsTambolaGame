@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Document</title>
+    <title>Tambola Game</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -19,7 +19,7 @@
       </div>
       <div class="playerModel">
         <input type="text" placeholder="Enter Player Name" class="modelInput" />
-        <div class="btnsGroup">
+        <div class="btnsGroup playerModelBtnsGrp">
           <button class="cancelBtn">Cancel</button>
           <button class="addBtn">Add</button>
         </div>
@@ -49,8 +49,19 @@
               <button class="resetBtn">Reset</button>
             </div>
 
-            <div class="historyContainer"></div>
+            <div class="historyContainer">
+                        </div>
           </div>
+        </div>
+        <div class="resetModel closeResetModel">
+            <p class="mediumContent">
+                Are you sure, you want to reset?
+                    </p>
+        <div class="btnsGroup resetModelBtnsGrp">
+          <button class="cancelResetBtn">Cancel</button>
+          <button class="confirmResetBtn">Confirm</button>
+        </div>
+
         </div>
       </div>
     </div>

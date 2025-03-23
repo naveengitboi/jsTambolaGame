@@ -109,6 +109,9 @@ button {
     justify-content: space-around;
     align-items: center;
     padding: 0.5rem;
+}
+.playerModelBtnsGrp
+{
     display: none;
 }
 
@@ -248,5 +251,54 @@ button {
 .activenbCell
 {
     background-color: var(--darkGreen);
+}
+
+
+.historyContainer{
+    max-height: 250px;
+    overflow-y: scroll;
+    padding: 0.5rem;
+    position: relative;
+}
+.masking{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    left: 0;
+}
+
+
+.resetModel
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--darkGreen);
+    border-radius: 0.25rem;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.closeResetModel{
+    top: -100%;
+    opacity: 0;
+}
+
+.openResetModel{
+    top: 10%;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+.confirmResetBtn
+{
+    background-color: var(--lightGreen);
+    margin-left: 1rem;
 }
 

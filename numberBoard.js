@@ -11,6 +11,10 @@ const nbNumbersContainer = document.querySelector(".nbNumbersContainer");
 
 const historyContainer = document.querySelector(".historyContainer");
 
+const resetModel = document.querySelector('.resetModel');
+const confirmResetBtn = document.querySelector('.confirmResetBtn');
+const cancelResetBtn = document.querySelector('.cancelResetBtn');
+
 let nums = [];
 
 function getRandomNumber() {
@@ -45,10 +49,26 @@ if (nums.length < maxNum) {
         }
     });
     resetBtn.addEventListener("click", (e) => {
-        console.log(nums);
         nums = [];
-        changeBackground(nums, null);
-        console.log(nums);
+        if(resetModel.classList.contains('closeResetModel')){
+            resetModel.classList.remove('closeResetModel');
+            resetModel.classList.add('openResetModel');
+            
+            confirmResetBtn.addEventListener('click', () => {
+                resetModel.classList.remove('openResetModel');
+                resetModel.classList.add('closeResetModel');
+                changeBackground(nums, null);
+                showHistory(nums, true);
+
+            });
+
+            cancelResetBtn.addEventListener('click', () => {
+                resetModel.classList.remove('openResetModel');
+                resetModel.classList.add('closeResetModel');
+
+            });
+            
+        }
     })
 
 }
@@ -110,12 +130,16 @@ function checkIfItExistInHistory(num) {
     return false;
 }
 
-function showHistory(nums) {
+function showHistory(nums, isReset = false) {
 
     for (let num of nums) {
         if (!checkIfItExistInHistory(num)) {
             let hCell = createNbCell(num);
-            historyContainer.appendChild(hCell);
+            historyContainer.prepend(hCell);
         }
     }
+    if(isReset){
+        historyContainer.innerHTML = "";
+    }
+
 }
