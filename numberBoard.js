@@ -1,150 +1,145 @@
-let maxNum = 90;
-let minNum = 1;
 let currentNumber = null;
 const numberEle = document.querySelector(".numberElement");
-let historyOpened = false;
-
 const resetBtn = document.querySelector(".resetBtn");
 const historyBtn = document.querySelector(".historyBtn");
+const sound = document.querySelector('.soundSwitch');
+let soundOn = true;
 
 const nbNumbersContainer = document.querySelector(".nbNumbersContainer");
 
 const historyContainer = document.querySelector(".historyContainer");
+let historyOpened = false;
 
 const resetModel = document.querySelector('.resetModel');
 const confirmResetBtn = document.querySelector('.confirmResetBtn');
 const cancelResetBtn = document.querySelector('.cancelResetBtn');
 
-let nums = [];
 
-function getRandomNumber() {
-    let randInt = Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
 
-    return randInt;
-}
+class NumsBoard {
+    constructor(options = {}) {
+        this.start = options.start || 1;
+        this.end = options.end || 90;
+        this.nums = [];
+        this.dp = new Array(this.end + 1, false);
+        this.boardNums = [];
+        this.current = null;
+        for (let i = this.start; i <= this.end; i++) {
+            this.boardNums = i;
+        }
+        this.createNumbersBoard(nbNumbersContainer);
+    }
+    createNbCell(num) {
+        let nbCell = document.createElement("p");
+        nbCell.classList.add("nbCell", "smallContent");
+        nbCell.setAttribute("index", num);
+        nbCell.textContent = num;
+        return nbCell;
+    }
 
-function checkIfExist(num) {
-    for (let x of nums) {
-        if (x == num) {
-            return true;
+    createNumbersBoard(parent) {
+        for (let i = this.start; i <= this.end; i++) {
+            let nbCell = this.createNbCell(i);
+            parent.appendChild(nbCell);
         }
     }
-    return false;
-}
+    checkIfExist(num) {
+        return this.dp[num];
+    }
 
-function closeResetPopup(){
-    resetModel.classList.remove('openResetModel');
-    resetModel.classList.add('closeResetModel');
-}
-
-function openResetPopup(){
-    resetModel.classList.add('openResetModel');
-    resetModel.classList.remove('closeResetModel');
-}
-
-if (nums.length < maxNum) {
-    numberEle.addEventListener("click", (e) => {
-        let randInt = getRandomNumber();
-        while (checkIfExist(randInt) && nums.length < maxNum) {
-            randInt = getRandomNumber();
-        }
-        if (!checkIfExist(randInt)) {
-            nums.push(randInt);
-            currentNumber = randInt;
-            changeBackground(nums, currentNumber);
-            numberEle.innerText = randInt;
-            if (historyOpened) {
-                showHistory(nums);
+    paint(cnum) {
+        let cells = nbNumbersContainer.children;
+        for (let cell of cells) {
+            if (cell.attributes[1].value == cnum) {
+                cell.style.backgroundColor = "#00c04b";
+            } if (cnum == null) {
+                cell.style.backgroundColor = "rgb(126, 255, 126)";
             }
         }
-    });
-    resetBtn.addEventListener("click", (e) => {
-        nums = [];
-        if(resetModel.classList.contains('closeResetModel')){
+    }
+
+    add(num) {
+        this.current = num;
+        this.nums.push(this.current);
+        this.dp[this.current] = true;
+        this.paint(this.current);
+        numberEle.innerText = this.current;
+        // history
+        if(soundOn){
+            txtToSpeech(this.current);
+        }
+        let hCell = this.createNbCell(this.current);
+        historyContainer.prepend(hCell);
+    }
+
+    resetHistory() {
+        historyContainer.innerHTML = "";
+        numberEle.textContent = "Start";
+        this.paint(null);
+    }
+    reset() {
+        this.nums = [];
+        if (resetModel.classList.contains('closeResetModel')) {
             openResetPopup();
             confirmResetBtn.addEventListener('click', () => {
                 closeResetPopup();
-                changeBackground(nums, null);
-                showHistory(nums, true);
-
+                this.resetHistory();
             });
 
             cancelResetBtn.addEventListener('click', () => {
                 closeResetPopup();
             });
-            
-        }
-    })
-
-}
-
-
-//creating numbers board
-const allNums = [];
-
-function createNbCell(num) {
-    let nbCell = document.createElement("p");
-    nbCell.classList.add("nbCell", "smallContent");
-    nbCell.setAttribute("index", num);
-    nbCell.textContent = num;
-    return nbCell;
-}
-
-function createNumbersBoard(nums, parent) {
-    for (let i = minNum; i <= maxNum; i++) {
-        let nbCell = createNbCell(i);
-        parent.appendChild(nbCell);
-    }
-}
-
-
-for (let i = 1; i <= 90; i++) {
-    allNums.push(i);
-}
-
-createNumbersBoard(allNums, nbNumbersContainer);
-
-function changeBackground(nums, cnum) {
-    let cells = nbNumbersContainer.children;
-    for (let cell of cells) {
-        if (cell.attributes[1].value == cnum) {
-            cell.style.backgroundColor = "#00c04b";
-        } if (cnum == null) {
-            cell.style.backgroundColor = "rgb(126, 255, 126)";
         }
     }
+
 }
 
 
-historyBtn.addEventListener("click", (event) => {
-    showHistory(nums);
-    historyOpened = true;
+let board = new NumsBoard();
+
+if (board.nums.length < maxNum) {
+    numberEle.addEventListener("click", (e) => {
+        let randInt = getRandomNumber();
+        while (board.checkIfExist(randInt) && board.nums.length < maxNum) {
+            randInt = getRandomNumber();
+        }
+        if (!board.checkIfExist(randInt)) {
+            board.add(randInt);
+        }
+    });
+}
+
+resetBtn.addEventListener("click", (e) => {
+    board.reset();
 })
 
-
-
-function checkIfItExistInHistory(num) {
-    let cells = historyContainer.children;
-    // console.log("Cells ", cells);
-    for (let cell of cells) {
-        let cellNum = cell.attributes[1].value;
-        if (cellNum == num) {
-            return true;
-        }
+historyBtn.addEventListener("click", (event) => {
+    if (!historyOpened) {
+        historyContainer.classList.add('showHistory');
+        historyOpened = true;
+    } else {
+        historyOpened = false;
+        historyContainer.classList.remove('showHistory');
     }
-    return false;
+})
+
+sound.addEventListener('click', (e) => {
+    if(soundOn){
+        sound.innerHTML = `<ion-icon name="volume-mute-outline"></ion-icon>`;
+        soundOn = false;
+    }else{
+        sound.innerHTML = `<ion-icon name="volume-high-outline"></ion-icon>`;
+        soundOn = true;
+    }
+});
+
+
+function closeResetPopup() {
+    resetModel.classList.remove('openResetModel');
+    resetModel.classList.add('closeResetModel');
 }
 
-function showHistory(nums, isReset = false) {
-
-    for (let num of nums) {
-        if (!checkIfItExistInHistory(num)) {
-            let hCell = createNbCell(num);
-            historyContainer.prepend(hCell);
-        }
-    }
-    if(isReset){
-        historyContainer.innerHTML = "";
-    }
-
+function openResetPopup() {
+    resetModel.classList.add('openResetModel');
+    resetModel.classList.remove('closeResetModel');
 }

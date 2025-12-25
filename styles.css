@@ -8,7 +8,7 @@
 }
 
 :root {
-    --mainTitle: 2.5rem;
+    --mainTitle: 3rem;
     --mediumHeading: 2rem;
     --mediumContent: 1.25rem;
     --smallContent: 1rem;
@@ -58,6 +58,10 @@
     padding: 0.85rem 1.5rem;
 }
 
+.actionNavbar {
+    display: none;
+}
+
 button {
     background: transparent;
     border: none;
@@ -69,15 +73,13 @@ button {
     cursor: pointer;
 }
 
-.actionNavbar{
-    display: none;
-}
-.signUp, .historyBtn{
+.signUp,
+.historyBtn {
     background: var(--lightGreen);
 }
 
 
-.playerModel{
+.playerModel {
     background: var(--darkGreen);
     position: absolute;
     right: -100%;
@@ -110,8 +112,8 @@ button {
     align-items: center;
     padding: 0.5rem;
 }
-.playerModelBtnsGrp
-{
+
+.playerModelBtnsGrp {
     display: none;
 }
 
@@ -124,17 +126,18 @@ button {
     /* grid-template-columns: repeat(2, 50%); */
     padding: 1rem;
     border: 2px solid var(--lightGreen);
+    max-width: 100vw;
 }
+
+
 
 .playersContainer {
     padding: 0 1rem;
-    border: 2px solid blue;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 0.85rem 0;
-    display: none;
 }
 
 .innerContainer {
@@ -165,9 +168,6 @@ button {
     padding: 0.25rem;
 }
 
-.tilesContainer {
-    border: 2px solid blue;
-}
 
 .tilesRow {
     display: grid;
@@ -175,7 +175,6 @@ button {
 }
 
 .tile {
-    border: 2px solid red;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -185,14 +184,15 @@ button {
 .tile p {
     font-weight: bold;
 }
-.crossedTile 
-{
+
+.crossedTile {
     background-color: rgba(255, 0, 0, 0.395);
 }
 
 /* number board */
 .numberBoardWrapper {
     min-width: 50vw;
+    max-width: 100vw;
 }
 
 .nbHeader {
@@ -202,16 +202,17 @@ button {
     align-items: center;
     padding: 0.85rem 1.25rem;
 }
-.nbOuterWrapper
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    padding: 2rem;
+
+/* sound button */
+
+.soundSwitch ion-icon{
+    font-size: 2rem;
+    cursor: pointer;
 }
 
+
+
+/* Main Number shower */
 .nbNumberWrapper {
     display: flex;
     justify-content: center;
@@ -220,21 +221,33 @@ button {
 }
 
 .nbNumberWrapper .mainTitle {
-    --cmSize:120px;
+    --cmSize: 200px;
     border: 2px solid black;
     width: var(--cmSize);
     height: var(--cmSize);
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 
-.nbNumbersContainer, .historyContainer {
+
+/* tiles wrapper */
+.nbOuterWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem;
+}
+
+.nbNumbersContainer{
     display: grid;
-    grid-template-columns: repeat(15,50px);
-    gap:5px;
+    grid-template-columns: repeat(15, 50px);
+    gap: 5px;
 }
 
 .nbCell {
@@ -248,19 +261,32 @@ button {
     border-radius: 0.25rem;
 }
 
-.activenbCell
-{
+.activenbCell {
     background-color: var(--darkGreen);
 }
 
 
-.historyContainer{
+.historyContainer {
     max-height: 250px;
+    width: 100%;
     overflow-y: scroll;
     padding: 0.5rem;
     position: relative;
+    display: none;
 }
-.masking{
+.showHistory{
+    display: grid;
+    grid-template-columns: repeat(14, 55px);
+    place-items: center;
+    gap: 5px;
+    border: 2px solid var(--darkGreen);
+}
+.historyContainer p:first-child{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.masking {
     position: absolute;
     width: 100%;
     height: 10%;
@@ -269,11 +295,10 @@ button {
 }
 
 
-.resetModel
-{
-    position: absolute;
+.resetModel {
+    position: fixed;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 30vh);
     background-color: var(--darkGreen);
     border-radius: 0.25rem;
     padding: 2.5rem;
@@ -285,19 +310,18 @@ button {
     transition: all 0.5s ease-in-out;
 }
 
-.closeResetModel{
+.closeResetModel {
     top: -100%;
     opacity: 0;
 }
 
-.openResetModel{
+.openResetModel {
     top: 10%;
     opacity: 1;
     transition: all 0.5s ease-in-out;
 }
 
-.confirmResetBtn
-{
+.confirmResetBtn {
     background-color: var(--lightGreen);
     margin-left: 1rem;
 }
@@ -305,20 +329,25 @@ button {
 /* responsive*/
 
 @media screen and (max-width: 986px) {
-    .nbNumbersContainer, .historyContainer {
-        grid-template-columns: repeat(10,50px);
+
+    .nbNumbersContainer,
+    .historyContainer {
+        grid-template-columns: repeat(10, 50px);
     }
 }
 
 @media screen and (max-width: 677px) {
-    .nbNumbersContainer, .historyContainer {
-        grid-template-columns: repeat(8,50px);
+
+    .nbNumbersContainer,
+    .historyContainer {
+        grid-template-columns: repeat(8, 50px);
     }
 }
 
 @media screen and (max-width: 585px) {
-    .nbNumbersContainer, .historyContainer {
-        grid-template-columns: repeat(5,50px);
+
+    .nbNumbersContainer,
+    .historyContainer {
+        grid-template-columns: repeat(5, 50px);
     }
 }
-

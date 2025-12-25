@@ -8,7 +8,6 @@ const boardNums = []
 let innerContainer = document.querySelector('.innerContainer');
 
 class Board {
-
     constructor({player = player, crossPoints = crossPoints}) {
         this.player = player;
         this.crossPoints = crossPoints;
@@ -16,7 +15,6 @@ class Board {
         this.numOfTiles = numOfTiles
         this.createBoard();
     };
-
     createTilesRow(tilesContainer) {
         for (let i = 0; i < this.numOfRows; i++) {
             let tilesRow = document.createElement('div')
